@@ -1,6 +1,6 @@
-package ru.iportnyagin.logistic.dto;
+package ru.iportnyagin.logistic.v2.dto;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -10,11 +10,11 @@ import lombok.RequiredArgsConstructor;
  * closingAt
  * processingDelay
  */
-@Data
+@Getter
 @RequiredArgsConstructor
 public class BranchDto {
     private final String id;
-    private final int openingAt;
+    private final int openingAt; // todo use DateTime
     private final int closingAt;
     private final int processingDelay;
 }
