@@ -1,6 +1,6 @@
-package ru.iportnyagin.logistic;
+package ru.iportnyagin.logistic.v1;
 
-import ru.iportnyagin.logistic.dto.CargoDto;
+import ru.iportnyagin.logistic.v1.dto.CargoDto;
 
 import java.util.Optional;
 

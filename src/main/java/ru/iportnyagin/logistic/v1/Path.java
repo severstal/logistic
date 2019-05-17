@@ -1,8 +1,8 @@
-package ru.iportnyagin.logistic;
+package ru.iportnyagin.logistic.v1;
 
 import lombok.Data;
-import ru.iportnyagin.logistic.dto.BranchDto;
-import ru.iportnyagin.logistic.dto.RouteDto;
+import ru.iportnyagin.logistic.v1.dto.BranchDto;
+import ru.iportnyagin.logistic.v1.dto.RouteDto;
 
 import java.util.ArrayList;
 import java.util.List;

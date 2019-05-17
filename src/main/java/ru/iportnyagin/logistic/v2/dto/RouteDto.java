@@ -1,6 +1,6 @@
-package ru.iportnyagin.logistic.dto;
+package ru.iportnyagin.logistic.v2.dto;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -14,15 +14,18 @@ import lombok.RequiredArgsConstructor;
  * weight (*)
  * routeLength (*)
  */
-@Data
+@Getter
 @RequiredArgsConstructor
 public class RouteDto {
-    private final  String name;
+    private final String name;
     private final BranchDto from;
-    private final  BranchDto to;
-    private final  int startingAt;
-    private final  int arrivingAt;
-    private final  int duration;
+    private final BranchDto to;
+    private final DateTime startingAt;
+    private final int duration;
+
+    public DateTime getArrivingAt() {
+        return DateTime.from(startingAt).addHour(duration);
+    }
 
     @Override
     public String toString() {

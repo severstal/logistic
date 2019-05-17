@@ -1,4 +1,4 @@
-package ru.iportnyagin.logistic.dto;
+package ru.iportnyagin.logistic.v1.dto;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
