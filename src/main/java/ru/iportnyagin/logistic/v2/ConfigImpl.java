@@ -2,9 +2,7 @@ package ru.iportnyagin.logistic.v2;
 
 import lombok.Getter;
 import ru.iportnyagin.logistic.v2.dto.BranchDto;
-import ru.iportnyagin.logistic.v2.dto.DateTime;
 import ru.iportnyagin.logistic.v2.dto.RouteDto;
-import ru.iportnyagin.logistic.v2.dto.RouteBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,14 +20,63 @@ public class ConfigImpl implements Config {
 
     public ConfigImpl() {
 
-        final BranchDto branchA = new BranchDto("A", 0, 24, 3);
-        final BranchDto branchB = new BranchDto("B", 8, 18, 2);
-        final BranchDto branchC = new BranchDto("C", 9, 17, 5);
-        final BranchDto branchD = new BranchDto("D", 8, 20, 2);
-        final BranchDto branchE = new BranchDto("E", 10, 20, 5);
-        final BranchDto branchF = new BranchDto("F", 10, 18, 4);
-        final BranchDto branchG = new BranchDto("G", 8, 18, 3);
-        final BranchDto branchH = new BranchDto("H", 10, 20, 2);
+        final BranchDto branchA = new BranchDto("A",
+                                                ScheduleBuilder.builder() // круглосуточно без перерывов и выходных
+                                                               .dateTime(new DateTime(0, 0))
+                                                               .intValue(24)
+                                                               .repeatPeriodInHour(24)
+                                                               .repeatCount(365)
+                                                               .build(),
+                                                3);
+
+        final BranchDto branchB = new BranchDto("B",
+                                                ScheduleBuilder.builder()
+                                                               .dateTime(new DateTime(0, 8))
+                                                               .intValue(10)
+                                                               .buildWorkDaysForYear(),
+                                                2);
+
+        final BranchDto branchC = new BranchDto("C",
+                                                ScheduleBuilder.builder()
+                                                               .dateTime(new DateTime(0, 9))
+                                                               .intValue(8)
+                                                               .buildWorkDaysForYear(),
+                                                5);
+
+        final BranchDto branchD = new BranchDto("D",
+                                                ScheduleBuilder.builder()
+                                                               .dateTime(new DateTime(0, 8))
+                                                               .intValue(14)
+                                                               .buildWorkDaysForYear(),
+                                                2);
+
+        final BranchDto branchE = new BranchDto("E",
+                                                ScheduleBuilder.builder()
+                                                               .dateTime(new DateTime(0, 10))
+                                                               .intValue(12)
+                                                               .buildWorkDaysForYear(),
+                                                5);
+
+        final BranchDto branchF = new BranchDto("F",
+                                                ScheduleBuilder.builder()
+                                                               .dateTime(new DateTime(0, 10))
+                                                               .intValue(8)
+                                                               .buildWorkDaysForYear(),
+                                                4);
+
+        final BranchDto branchG = new BranchDto("G",
+                                                ScheduleBuilder.builder()
+                                                               .dateTime(new DateTime(0, 8))
+                                                               .intValue(10)
+                                                               .buildWorkDaysForYear(),
+                                                3);
+
+        final BranchDto branchH = new BranchDto("H",
+                                                ScheduleBuilder.builder()
+                                                               .dateTime(new DateTime(0, 10))
+                                                               .intValue(10)
+                                                               .buildWorkDaysForYear(),
+                                                2);
 
         branches = Arrays.asList(
                 branchA, branchB, branchC, branchD, branchE, branchF, branchG, branchH

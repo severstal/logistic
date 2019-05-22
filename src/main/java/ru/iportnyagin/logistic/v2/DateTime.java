@@ -1,4 +1,4 @@
-package ru.iportnyagin.logistic.v2.dto;
+package ru.iportnyagin.logistic.v2;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +14,9 @@ public class DateTime {
 
     private int day;
     private int hour;
+
+    // todo replace with Optional
+    public static DateTime LAST_DAY = new DateTime(365, 24);
 
     public static DateTime from(DateTime source) {
         return new DateTime(source.day, source.hour);
@@ -33,6 +36,7 @@ public class DateTime {
         return (this.day - dateTime.day) * 24 + (this.hour - dateTime.hour);
     }
 
+    // todo bad design - for sum hours other class is needed
     public DateTime addHour(int hour) {
         return fromGlobalHour(this.getGlobalHour() + hour);
     }
@@ -53,6 +57,11 @@ public class DateTime {
         this.day = hour / 24;
         this.hour = hour % 24;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return day + "." + hour;
     }
 
 }

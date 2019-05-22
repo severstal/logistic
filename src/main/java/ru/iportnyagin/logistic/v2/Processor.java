@@ -2,7 +2,6 @@ package ru.iportnyagin.logistic.v2;
 
 import ru.iportnyagin.logistic.v2.dto.BranchDto;
 import ru.iportnyagin.logistic.v2.dto.CargoDto;
-import ru.iportnyagin.logistic.v2.dto.DateTime;
 import ru.iportnyagin.logistic.v2.dto.RouteDto;
 
 import java.util.ArrayList;
@@ -26,14 +25,21 @@ public class Processor {
      * @param cargo           груз
      * @param currentLocation текущее местоположение
      * @param fromDate        начальная дата старта маршрутов
-     * @param toDate          конечная дата старта маршрутов
+     * @param searchDuration  конечная дата старта маршрутов
      * @return
      */
-    public Optional<Path> findBestPath(CargoDto cargo, BranchDto currentLocation, DateTime fromDate, DateTime toDate) {
+    public Optional<Path> findBestPath(CargoDto cargo,
+                                       BranchDto currentLocation,
+                                       DateTime fromDate,
+                                       int searchDuration) {
 
-        List<Path> paths = findAllPathsBetween(currentLocation, cargo.getDestination(), fromDate, toDate);
+        List<Path> paths = findAllPathsBetween(currentLocation,
+                                               cargo.getDestination(),
+                                               fromDate,
+                                               DateTime.from(fromDate).addHour(searchDuration));
+        System.out.println("will search from date:" + fromDate);
 
-        paths.forEach(p -> System.out.println(p.getRoutes()));
+        paths.forEach(System.out::println);
 
         if (paths.isEmpty()) {
             System.out.println(String.format("no routes between %s and %s",
@@ -42,26 +48,8 @@ public class Processor {
             return Optional.empty();
         }
 
-        List<Integer> durations = new ArrayList<>(paths.size());
-        for (Path path : paths) {
-            Integer duration = calculateDuration(path.getRoutes());
-            durations.add(duration);
-        }
-
-        int curValue = durations.get(0);
-        int indexMinValue = 0;
-
-        for (int i = 1; i < durations.size(); i++) {
-            if (durations.get(i) < curValue) {
-                curValue = durations.get(i);
-                indexMinValue = i;
-            }
-        }
-
-        System.out.println(durations);
-        System.out.println(curValue);
-
-        return Optional.of(paths.get(indexMinValue));
+        return paths.stream()
+                    .min((a, b) -> a.getPathDuration() > b.getPathDuration() ? 1 : -1);
     }
 
     private List<Path> findAllPathsBetween(BranchDto source, BranchDto target, DateTime fromDate, DateTime toDate) {
@@ -73,7 +61,7 @@ public class Processor {
         }
 
         for (RouteDto route : outgoingRoutes) {
-            goByRoute(result, new Path(), route, target, new ArrayList<>(), toDate);
+            goByRoute(result, new Path(fromDate), route, target, new ArrayList<>(), toDate);
         }
 
         return result;
@@ -108,26 +96,37 @@ public class Processor {
         }
     }
 
-    private int calculateDuration(List<RouteDto> routes) {
+    private DateTime processInBranch(BranchDto branch, final DateTime dateTime) {
 
-        final DateTime startDateTime = routes.get(0).getStartingAt();
-        final DateTime endDateTime = routes.get(routes.size() - 1).getArrivingAt();
-        return endDateTime.hoursBetween(startDateTime);
-    }
-
-    private DateTime processInBranch(BranchDto branch, DateTime dateTime) {
-
-        if (dateTime.getHour() < branch.getOpeningAt()) {
-            dateTime.addHour(branch.getOpeningAt() - dateTime.getHour());
+        Optional<ScheduleItem> scheduleItem = branch.findNearestScheduleItem(dateTime);
+        if (!scheduleItem.isPresent()) {
+            return DateTime.LAST_DAY;
         }
 
-        dateTime.addHour(branch.getProcessingDelay());
+        // todo посмотреть
+        // время обработки может быть более одного периода работы отделения
+        DateTime openedAt = scheduleItem.get().getDateTime();
+        int worksDuration = scheduleItem.get().getIntValue();
+        int processingDuration = branch.getProcessingDelay();
 
-        if (dateTime.getHour() >= branch.getClosingAt()) {
-            dateTime.addHour(24 - dateTime.getHour() + branch.getOpeningAt());
-            processInBranch(branch, dateTime);
+        DateTime result = DateTime.from(openedAt);
+        if (processingDuration > worksDuration) {
+
+            while (processingDuration > worksDuration) {
+                result.addHour(worksDuration);
+                processingDuration = processingDuration - worksDuration;
+
+                Optional<ScheduleItem> scheduleItem2 = branch.findNearestScheduleItem(result);
+                if (!scheduleItem2.isPresent()) {
+                    return DateTime.LAST_DAY;
+                }
+                result = scheduleItem2.get().getDateTime();
+            }
         }
-        return dateTime;
+
+        result.addHour(processingDuration);
+
+        return result;
     }
 
     private List<RouteDto> findOutgoingRoutes(BranchDto fromBranch,

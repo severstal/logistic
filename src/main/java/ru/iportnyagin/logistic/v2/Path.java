@@ -12,14 +12,31 @@ import java.util.List;
 @Data
 public class Path {
     private List<RouteDto> routes;
+    private DateTime fromDateTime;
 
-    public Path() {
-        routes = new ArrayList<>();
+    public Path(DateTime fromDateTime) {
+        this.routes = new ArrayList<>();
+        this.fromDateTime = fromDateTime;
     }
 
     public Path(Path source) {
-        routes = new ArrayList<>();
-        routes.addAll(source.routes);
+        this.routes = new ArrayList<>();
+        this.routes.addAll(source.getRoutes());
+        this.fromDateTime = source.getFromDateTime();
+    }
+
+    public int getPathDuration() {
+        final DateTime endDateTime = routes.get(routes.size() - 1).getArrivingAt();
+        return endDateTime.hoursBetween(fromDateTime);
+    }
+
+    public DateTime getPathStartingAt() {
+        return routes.get(0).getStartingAt();
+    }
+
+    @Override
+    public String toString() {
+        return routes.toString() + " in " + getPathDuration() + " hours";
     }
 
 }

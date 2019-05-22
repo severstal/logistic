@@ -2,6 +2,7 @@ package ru.iportnyagin.logistic.v2.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import ru.iportnyagin.logistic.v2.DateTime;
 
 /**
  * RouteDto
@@ -17,10 +18,11 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class RouteDto {
-    private final String name;
+
+    private final String description;
     private final BranchDto from;
     private final BranchDto to;
-    private final DateTime startingAt;
+    private final DateTime startingAt; // todo replace with ScheduleItem
     private final int duration;
 
     public DateTime getArrivingAt() {
@@ -29,6 +31,7 @@ public class RouteDto {
 
     @Override
     public String toString() {
-        return name;
+        return description + " " + startingAt;
     }
+
 }

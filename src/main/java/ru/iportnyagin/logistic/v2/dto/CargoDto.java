@@ -12,5 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class CargoDto {
+
     private final BranchDto destination;
+
 }

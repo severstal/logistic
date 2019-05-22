@@ -1,4 +1,7 @@
-package ru.iportnyagin.logistic.v2.dto;
+package ru.iportnyagin.logistic.v2;
+
+import ru.iportnyagin.logistic.v2.dto.BranchDto;
+import ru.iportnyagin.logistic.v2.dto.RouteDto;
 
 import java.util.ArrayList;
 import java.util.List;
