@@ -50,16 +50,21 @@ public class ScheduleBuilder {
         List<ScheduleItem> result = new ArrayList<>();
 
         for (int i = 0; i < repeatCount; i++) {
-            result.add(new ScheduleItem(DateTime.from(dateTime).addHour(i * repeatPeriodInHour),
-                                        intValue,
-                                        stringValue));
+            result.add(new ScheduleItem(
+                    DateTimeBuilder.builder()
+                                   .setDateTime(dateTime)
+                                   .addHour(i * repeatPeriodInHour)
+                                   .build(),
+                    intValue,
+                    stringValue));
         }
 
         return result;
     }
 
     /**
-     * создаст расписание пнд-птн с 0-го дня по 365. високосности нет. час возьмется из заданного dateTime.
+     * создаст расписание пнд-птн с 0-го дня по 365. 0 день - пнд. високосности нет.
+     * час возьмется из заданного dateTime. // todo это криво
      */
     public List<ScheduleItem> buildWorkDaysForYear() {
         this.dateTime = new DateTime(0, this.dateTime.getHour());
@@ -73,9 +78,13 @@ public class ScheduleBuilder {
                 continue;
             }
 
-            result.add(new ScheduleItem(DateTime.from(dateTime).addHour(i * repeatPeriodInHour),
-                                        intValue,
-                                        stringValue));
+            result.add(new ScheduleItem(
+                    DateTimeBuilder.builder()
+                                   .setDateTime(dateTime)
+                                   .addHour(i * repeatPeriodInHour)
+                                   .build(),
+                    intValue,
+                    stringValue));
         }
 
         return result;

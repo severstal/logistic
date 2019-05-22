@@ -11,7 +11,9 @@ import java.util.List;
  */
 @Data
 public class Path {
+
     private List<RouteDto> routes;
+    // дата-время, с которого начинается построение пути
     private DateTime fromDateTime;
 
     public Path(DateTime fromDateTime) {

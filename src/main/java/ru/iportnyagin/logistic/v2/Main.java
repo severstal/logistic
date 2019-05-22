@@ -14,7 +14,7 @@ public class Main {
 
         Optional<Path> bestPath = processor.findBestPath(cargo,
                                                          config.getBranches().get(0),
-                                                         DateTime.getCurrentDate(),
+                                                         new DateTime(0 ,5),
                                                          100);
 
         System.out.println();

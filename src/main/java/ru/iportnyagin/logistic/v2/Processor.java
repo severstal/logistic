@@ -36,8 +36,11 @@ public class Processor {
         List<Path> paths = findAllPathsBetween(currentLocation,
                                                cargo.getDestination(),
                                                fromDate,
-                                               DateTime.from(fromDate).addHour(searchDuration));
-        System.out.println("will search from date:" + fromDate);
+                                               DateTimeBuilder.builder()
+                                                              .setDateTime(fromDate)
+                                                              .addHour(searchDuration)
+                                                              .build());
+        System.out.println("will search from date: " + fromDate);
 
         paths.forEach(System.out::println);
 
@@ -83,9 +86,13 @@ public class Processor {
             return;
         }
 
-        DateTime endOfProcessing = processInBranch(arrived, DateTime.from(route.getArrivingAt()));
+        Optional<DateTime> endOfProcessing = processInBranch(arrived, route.getArrivingAt());
 
-        List<RouteDto> outgoingRoutes = findOutgoingRoutes(arrived, visited, endOfProcessing, toDate);
+        if (!endOfProcessing.isPresent()) {
+            return;
+        }
+
+        List<RouteDto> outgoingRoutes = findOutgoingRoutes(arrived, visited, endOfProcessing.get(), toDate);
 
         if (outgoingRoutes.isEmpty()) {
             return;
@@ -96,37 +103,35 @@ public class Processor {
         }
     }
 
-    private DateTime processInBranch(BranchDto branch, final DateTime dateTime) {
+    private Optional<DateTime> processInBranch(BranchDto branch, final DateTime dateTime) {
 
         Optional<ScheduleItem> scheduleItem = branch.findNearestScheduleItem(dateTime);
         if (!scheduleItem.isPresent()) {
-            return DateTime.LAST_DAY;
+            return Optional.empty();
         }
 
-        // todo посмотреть
-        // время обработки может быть более одного периода работы отделения
         DateTime openedAt = scheduleItem.get().getDateTime();
         int worksDuration = scheduleItem.get().getIntValue();
         int processingDuration = branch.getProcessingDelay();
 
-        DateTime result = DateTime.from(openedAt);
+        DateTimeBuilder resultBuilder = DateTimeBuilder.builder().setDateTime(openedAt);
         if (processingDuration > worksDuration) {
 
             while (processingDuration > worksDuration) {
-                result.addHour(worksDuration);
+                resultBuilder.addHour(worksDuration);
                 processingDuration = processingDuration - worksDuration;
 
-                Optional<ScheduleItem> scheduleItem2 = branch.findNearestScheduleItem(result);
-                if (!scheduleItem2.isPresent()) {
-                    return DateTime.LAST_DAY;
+                Optional<ScheduleItem> nextWorkDay = branch.findNearestScheduleItem(resultBuilder.build());
+                if (!nextWorkDay.isPresent()) {
+                    return Optional.empty();
                 }
-                result = scheduleItem2.get().getDateTime();
+                resultBuilder.setDateTime(nextWorkDay.get().getDateTime());
             }
         }
 
-        result.addHour(processingDuration);
+        resultBuilder.addHour(processingDuration);
 
-        return result;
+        return Optional.of(resultBuilder.build());
     }
 
     private List<RouteDto> findOutgoingRoutes(BranchDto fromBranch,
