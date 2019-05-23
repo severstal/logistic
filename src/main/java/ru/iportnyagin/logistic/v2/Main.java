@@ -10,7 +10,7 @@ public class Main {
 
         Config config = new ConfigImpl();
         CargoDto cargo = new CargoDto(config.getBranches().get(4));
-        Processor processor = new Processor(config);
+        Processor processor = new ProcessorImpl(config);
 
         Optional<Path> bestPath = processor.findBestPath(cargo,
                                                          config.getBranches().get(0),

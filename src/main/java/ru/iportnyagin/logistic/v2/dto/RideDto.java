@@ -31,7 +31,7 @@ public class RideDto {
 
     @Override
     public String toString() {
-        return description + " at " + schedule.getDateTime() + " to " + getArrivingAt();
+        return from.getId() + ":" + schedule.getDateTime() + "-" + to.getId() + ":" + getArrivingAt() + "(" + schedule.getIntValue() + "h)";
     }
 
 }

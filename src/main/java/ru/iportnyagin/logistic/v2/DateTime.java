@@ -20,9 +20,7 @@ public class DateTime {
     }
 
     public DateTime(DateTime dateTime, int addHour) {
-        int gHour = dateTime.day * 24 + dateTime.hour + addHour;
-        this.day = gHour / 24;
-        this.hour = gHour % 24;
+        this(dateTime.day, dateTime.hour + addHour);
     }
 
     private int toGlobalHour() {

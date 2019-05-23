@@ -80,206 +80,192 @@ public class ConfigImpl implements Config {
                 branchA, branchB, branchC, branchD, branchE, branchF, branchG, branchH
         );
 
-        routes = Arrays.asList(RouteBuilder.instance()
-                                           .name("ab")
-                                           .from(branchA)
-                                           .to(branchB)
-                                           .startingAt(new DateTime(0, 7))
-                                           .duration(1)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+        routes = Arrays.asList(new RouteDto("ab",
+                                            branchA,
+                                            branchB,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 7))
+                                                           .intValue(1)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("ba")
-                                           .from(branchB)
-                                           .to(branchA)
-                                           .startingAt(new DateTime(0, 10))
-                                           .duration(1)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("ba",
+                                            branchB,
+                                            branchA,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 10))
+                                                           .intValue(1)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("ac")
-                                           .from(branchA)
-                                           .to(branchC)
-                                           .startingAt(new DateTime(0, 8))
-                                           .duration(2)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("ac",
+                                            branchA,
+                                            branchC,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 8))
+                                                           .intValue(2)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("ca")
-                                           .from(branchC)
-                                           .to(branchA)
-                                           .startingAt(new DateTime(0, 12))
-                                           .duration(2)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("ca",
+                                            branchC,
+                                            branchA,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 12))
+                                                           .intValue(2)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("af")
-                                           .from(branchA)
-                                           .to(branchF)
-                                           .startingAt(new DateTime(0, 10))
-                                           .duration(3)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("af",
+                                            branchA,
+                                            branchF,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 10))
+                                                           .intValue(3)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("fa")
-                                           .from(branchF)
-                                           .to(branchA)
-                                           .startingAt(new DateTime(0, 15))
-                                           .duration(3)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("fa",
+                                            branchF,
+                                            branchA,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 15))
+                                                           .intValue(3)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("bc")
-                                           .from(branchB)
-                                           .to(branchC)
-                                           .startingAt(new DateTime(0, 12))
-                                           .duration(1)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("bc",
+                                            branchB,
+                                            branchC,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 12))
+                                                           .intValue(1)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("cb")
-                                           .from(branchC)
-                                           .to(branchB)
-                                           .startingAt(new DateTime(0, 16))
-                                           .duration(1)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("cb",
+                                            branchC,
+                                            branchB,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 16))
+                                                           .intValue(1)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
+                               new RouteDto("cd",
+                                            branchC,
+                                            branchD,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 11))
+                                                           .intValue(3)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("cd")
-                                           .from(branchC)
-                                           .to(branchD)
-                                           .startingAt(new DateTime(0, 11))
-                                           .duration(3)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("dc",
+                                            branchD,
+                                            branchC,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 10))
+                                                           .intValue(3)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("dc")
-                                           .from(branchD)
-                                           .to(branchC)
-                                           .startingAt(new DateTime(0, 10))
-                                           .duration(3)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("bd",
+                                            branchB,
+                                            branchD,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 8))
+                                                           .intValue(2)
+                                                           .repeatPeriodInHour(48)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("bd")
-                                           .from(branchB)
-                                           .to(branchD)
-                                           .startingAt(new DateTime(0, 8))
-                                           .duration(2)
-                                           .repeatPeriodInHour(48)
-                                           .repeatCount(2)
-                                           .build(),
+                               new RouteDto("be",
+                                            branchB,
+                                            branchE,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 8))
+                                                           .intValue(5)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("be")
-                                           .from(branchB)
-                                           .to(branchE)
-                                           .startingAt(new DateTime(0, 8))
-                                           .duration(5)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("eb",
+                                            branchE,
+                                            branchB,
+                                            ScheduleBuilder.builder()
+                                                           .dateTime(new DateTime(0, 11))
+                                                           .intValue(5)
+                                                           .repeatPeriodInHour(24)
+                                                           .repeatCount(365)
+                                                           .build()),
 
-                               RouteBuilder.instance()
-                                           .name("eb")
-                                           .from(branchE)
-                                           .to(branchB)
-                                           .startingAt(new DateTime(0, 11))
-                                           .duration(5)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("de",
+                                            branchD,
+                                            branchE,
+                                            ScheduleBuilder.builder()
+                                                           .hour(16)
+                                                           .intValue(2)
+                                                           .buildWorkDaysForYear()),
 
-                               RouteBuilder.instance()
-                                           .name("de")
-                                           .from(branchD)
-                                           .to(branchE)
-                                           .startingAt(new DateTime(0, 16))
-                                           .duration(2)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("eh",
+                                            branchE,
+                                            branchH,
+                                            ScheduleBuilder.builder()
+                                                           .hour(11)
+                                                           .intValue(2)
+                                                           .buildWorkDaysForYear()),
 
-                               RouteBuilder.instance()
-                                           .name("eh")
-                                           .from(branchE)
-                                           .to(branchH)
-                                           .startingAt(new DateTime(0, 11))
-                                           .duration(2)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("he",
+                                            branchH,
+                                            branchE,
+                                            ScheduleBuilder.builder()
+                                                           .hour(15)
+                                                           .intValue(2)
+                                                           .buildWorkDaysForYear()),
 
-                               RouteBuilder.instance()
-                                           .name("he")
-                                           .from(branchH)
-                                           .to(branchE)
-                                           .startingAt(new DateTime(0, 15))
-                                           .duration(2)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("hf",
+                                            branchH,
+                                            branchF,
+                                            ScheduleBuilder.builder()
+                                                           .hour(12)
+                                                           .intValue(2)
+                                                           .buildWorkDaysForYear()),
 
-                               RouteBuilder.instance()
-                                           .name("hf")
-                                           .from(branchH)
-                                           .to(branchF)
-                                           .startingAt(new DateTime(0, 12))
-                                           .duration(2)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("fh",
+                                            branchF,
+                                            branchH,
+                                            ScheduleBuilder.builder()
+                                                           .hour(12)
+                                                           .intValue(2)
+                                                           .buildWorkDaysForYear()),
 
-                               RouteBuilder.instance()
-                                           .name("fh")
-                                           .from(branchF)
-                                           .to(branchH)
-                                           .startingAt(new DateTime(0, 12))
-                                           .duration(2)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
+                               new RouteDto("fg",
+                                            branchF,
+                                            branchG,
+                                            ScheduleBuilder.builder()
+                                                           .hour(11)
+                                                           .intValue(2)
+                                                           .buildWorkDaysForYear()),
 
-                               RouteBuilder.instance()
-                                           .name("fg")
-                                           .from(branchF)
-                                           .to(branchG)
-                                           .startingAt(new DateTime(0, 11))
-                                           .duration(2)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build(),
-
-                               RouteBuilder.instance()
-                                           .name("gf")
-                                           .from(branchG)
-                                           .to(branchF)
-                                           .startingAt(new DateTime(0, 15))
-                                           .duration(2)
-                                           .repeatPeriodInHour(24)
-                                           .repeatCount(365)
-                                           .build());
+                               new RouteDto("gf",
+                                            branchG,
+                                            branchF,
+                                            ScheduleBuilder.builder()
+                                                           .hour(15)
+                                                           .intValue(2)
+                                                           .buildWorkDaysForYear())
+        );
 
     }
 
