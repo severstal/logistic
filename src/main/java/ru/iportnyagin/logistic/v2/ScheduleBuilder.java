@@ -9,6 +9,7 @@ import java.util.List;
 public class ScheduleBuilder {
 
     private DateTime dateTime;
+    private int hour;
     private int intValue;
     private String stringValue;
     private int repeatPeriodInHour;
@@ -23,6 +24,11 @@ public class ScheduleBuilder {
 
     public ScheduleBuilder dateTime(DateTime dateTime) {
         this.dateTime = dateTime;
+        return this;
+    }
+
+    public ScheduleBuilder hour(int hour) {
+        this.hour = hour;
         return this;
     }
 
@@ -51,10 +57,7 @@ public class ScheduleBuilder {
 
         for (int i = 0; i < repeatCount; i++) {
             result.add(new ScheduleItem(
-                    DateTimeBuilder.builder()
-                                   .setDateTime(dateTime)
-                                   .addHour(i * repeatPeriodInHour)
-                                   .build(),
+                    new DateTime(dateTime, i * repeatPeriodInHour),
                     intValue,
                     stringValue));
         }
@@ -64,10 +67,9 @@ public class ScheduleBuilder {
 
     /**
      * создаст расписание пнд-птн с 0-го дня по 365. 0 день - пнд. високосности нет.
-     * час возьмется из заданного dateTime. // todo это криво
      */
     public List<ScheduleItem> buildWorkDaysForYear() {
-        this.dateTime = new DateTime(0, this.dateTime.getHour());
+        DateTime dateTime = new DateTime(0, this.hour);
         this.repeatPeriodInHour = 24;
 
         List<ScheduleItem> result = new ArrayList<>();
@@ -79,10 +81,7 @@ public class ScheduleBuilder {
             }
 
             result.add(new ScheduleItem(
-                    DateTimeBuilder.builder()
-                                   .setDateTime(dateTime)
-                                   .addHour(i * repeatPeriodInHour)
-                                   .build(),
+                    new DateTime(dateTime, i * repeatPeriodInHour),
                     intValue,
                     stringValue));
         }

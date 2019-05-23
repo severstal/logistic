@@ -68,10 +68,7 @@ public class RouteBuilder {
             result.add(new RouteDto(name,
                                     from,
                                     to,
-                                    DateTimeBuilder.builder()
-                                                   .setDateTime(startingAt)
-                                                   .addHour(i * repeatPeriodInHour)
-                                                   .build(),
+                                    new DateTime(startingAt, i * repeatPeriodInHour),
                                     duration));
         }
 

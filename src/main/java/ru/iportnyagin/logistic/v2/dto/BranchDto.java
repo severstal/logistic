@@ -32,4 +32,9 @@ public class BranchDto {
                             .min((a, b) -> a.getDateTime().after(b.getDateTime()) ? 1 : -1);
     }
 
+    @Override
+    public String toString() {
+        return id;
+    }
+
 }

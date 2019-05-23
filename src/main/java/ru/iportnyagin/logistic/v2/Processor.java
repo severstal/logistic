@@ -36,11 +36,11 @@ public class Processor {
         List<Path> paths = findAllPathsBetween(currentLocation,
                                                cargo.getDestination(),
                                                fromDate,
-                                               DateTimeBuilder.builder()
-                                                              .setDateTime(fromDate)
-                                                              .addHour(searchDuration)
-                                                              .build());
-        System.out.println("will search from date: " + fromDate);
+                                               new DateTime(fromDate, searchDuration));
+        System.out.println(String.format("will search path from %s to %s begin at %s",
+                                         currentLocation,
+                                         cargo.getDestination(),
+                                         fromDate));
 
         paths.forEach(System.out::println);
 
@@ -114,24 +114,25 @@ public class Processor {
         int worksDuration = scheduleItem.get().getIntValue();
         int processingDuration = branch.getProcessingDelay();
 
-        DateTimeBuilder resultBuilder = DateTimeBuilder.builder().setDateTime(openedAt);
+        MutableDateTime duration = new MutableDateTime(openedAt);
+
         if (processingDuration > worksDuration) {
 
             while (processingDuration > worksDuration) {
-                resultBuilder.addHour(worksDuration);
+                duration.addHour(worksDuration);
                 processingDuration = processingDuration - worksDuration;
 
-                Optional<ScheduleItem> nextWorkDay = branch.findNearestScheduleItem(resultBuilder.build());
+                Optional<ScheduleItem> nextWorkDay = branch.findNearestScheduleItem(duration.getDateTime());
                 if (!nextWorkDay.isPresent()) {
                     return Optional.empty();
                 }
-                resultBuilder.setDateTime(nextWorkDay.get().getDateTime());
+                duration.setDateTime(nextWorkDay.get().getDateTime());
             }
         }
 
-        resultBuilder.addHour(processingDuration);
+        duration.addHour(processingDuration);
 
-        return Optional.of(resultBuilder.build());
+        return Optional.of(duration.getDateTime());
     }
 
     private List<RouteDto> findOutgoingRoutes(BranchDto fromBranch,

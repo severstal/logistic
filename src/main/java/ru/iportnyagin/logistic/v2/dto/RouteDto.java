@@ -3,7 +3,6 @@ package ru.iportnyagin.logistic.v2.dto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import ru.iportnyagin.logistic.v2.DateTime;
-import ru.iportnyagin.logistic.v2.DateTimeBuilder;
 
 /**
  * RouteDto
@@ -27,10 +26,7 @@ public class RouteDto {
     private final int duration;
 
     public DateTime getArrivingAt() {
-        return DateTimeBuilder.builder()
-                              .setDateTime(startingAt)
-                              .addHour(duration)
-                              .build();
+        return new DateTime(startingAt, duration);
     }
 
     @Override

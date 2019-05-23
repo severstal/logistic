@@ -22,7 +22,7 @@ public class ConfigImpl implements Config {
 
         final BranchDto branchA = new BranchDto("A",
                                                 ScheduleBuilder.builder() // круглосуточно без перерывов и выходных
-                                                               .dateTime(new DateTime(0, 0))
+                                                               .hour(0)
                                                                .intValue(24)
                                                                .repeatPeriodInHour(24)
                                                                .repeatCount(365)
@@ -31,49 +31,49 @@ public class ConfigImpl implements Config {
 
         final BranchDto branchB = new BranchDto("B",
                                                 ScheduleBuilder.builder()
-                                                               .dateTime(new DateTime(0, 8))
+                                                               .hour(8)
                                                                .intValue(10)
                                                                .buildWorkDaysForYear(),
                                                 2);
 
         final BranchDto branchC = new BranchDto("C",
                                                 ScheduleBuilder.builder()
-                                                               .dateTime(new DateTime(0, 9))
+                                                               .hour(9)
                                                                .intValue(8)
                                                                .buildWorkDaysForYear(),
                                                 5);
 
         final BranchDto branchD = new BranchDto("D",
                                                 ScheduleBuilder.builder()
-                                                               .dateTime(new DateTime(0, 8))
+                                                               .hour(8)
                                                                .intValue(14)
                                                                .buildWorkDaysForYear(),
                                                 2);
 
         final BranchDto branchE = new BranchDto("E",
                                                 ScheduleBuilder.builder()
-                                                               .dateTime(new DateTime(0, 10))
+                                                               .hour(10)
                                                                .intValue(12)
                                                                .buildWorkDaysForYear(),
                                                 5);
 
         final BranchDto branchF = new BranchDto("F",
                                                 ScheduleBuilder.builder()
-                                                               .dateTime(new DateTime(0, 10))
+                                                               .hour(10)
                                                                .intValue(8)
                                                                .buildWorkDaysForYear(),
                                                 4);
 
         final BranchDto branchG = new BranchDto("G",
                                                 ScheduleBuilder.builder()
-                                                               .dateTime(new DateTime(0, 8))
+                                                               .hour(8)
                                                                .intValue(10)
                                                                .buildWorkDaysForYear(),
                                                 3);
 
         final BranchDto branchH = new BranchDto("H",
                                                 ScheduleBuilder.builder()
-                                                               .dateTime(new DateTime(0, 10))
+                                                               .hour(10)
                                                                .intValue(10)
                                                                .buildWorkDaysForYear(),
                                                 2);
