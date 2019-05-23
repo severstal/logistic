@@ -14,6 +14,4 @@ public interface Config {
 
     List<RouteDto> getRoutes();
 
-    List<RouteDto> getOutgoingRoutes(BranchDto branchDto, DateTime fromDate, DateTime toDate);
-
 }

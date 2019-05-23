@@ -80,10 +80,9 @@ public class ScheduleBuilder {
                 continue;
             }
 
-            result.add(new ScheduleItem(
-                    new DateTime(dateTime, i * repeatPeriodInHour),
-                    intValue,
-                    stringValue));
+            result.add(new ScheduleItem(new DateTime(dateTime, i * repeatPeriodInHour),
+                                        intValue,
+                                        stringValue));
         }
 
         return result;

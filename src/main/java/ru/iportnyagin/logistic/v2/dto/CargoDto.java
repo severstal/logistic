@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
- * CargoDto
+ * CargoDto - груз
  * destination
  * volume (*)
  * weight (*)

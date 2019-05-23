@@ -2,10 +2,13 @@ package ru.iportnyagin.logistic.v2.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import ru.iportnyagin.logistic.v2.DateTime;
+import ru.iportnyagin.logistic.v2.ScheduleItem;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * RouteDto
+ * RouteDto - маршрут, откуда, куда, расписание
  * from
  * to
  * startingAt
@@ -22,16 +25,14 @@ public class RouteDto {
     private final String description;
     private final BranchDto from;
     private final BranchDto to;
-    private final DateTime startingAt; // todo replace with ScheduleItem
-    private final int duration;
-
-    public DateTime getArrivingAt() {
-        return new DateTime(startingAt, duration);
-    }
+    private final List<ScheduleItem> schedule;
 
     @Override
     public String toString() {
-        return description + " " + startingAt;
+        return description + " " + schedule.stream()
+                                           .limit(5)
+                                           .map(item -> item.getDateTime())
+                                           .collect(Collectors.toList());
     }
 
 }

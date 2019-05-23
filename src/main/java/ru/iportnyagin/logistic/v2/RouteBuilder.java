@@ -3,9 +3,6 @@ package ru.iportnyagin.logistic.v2;
 import ru.iportnyagin.logistic.v2.dto.BranchDto;
 import ru.iportnyagin.logistic.v2.dto.RouteDto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * RouteBuilder.
  */
@@ -61,18 +58,16 @@ public class RouteBuilder {
         return this;
     }
 
-    public List<RouteDto> build() {
-        List<RouteDto> result = new ArrayList<>();
-
-        for (int i = 0; i < repeatCount; i++) {
-            result.add(new RouteDto(name,
-                                    from,
-                                    to,
-                                    new DateTime(startingAt, i * repeatPeriodInHour),
-                                    duration));
-        }
-
-        return result;
+    public RouteDto build() {
+        return new RouteDto(name,
+                            from,
+                            to,
+                            ScheduleBuilder.builder()
+                                           .dateTime(startingAt)
+                                           .intValue(duration)
+                                           .repeatPeriodInHour(repeatPeriodInHour)
+                                           .repeatCount(repeatCount)
+                                           .build());
     }
 
 }

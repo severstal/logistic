@@ -17,7 +17,9 @@ import java.util.stream.Collectors;
 public class BranchDto {
 
     private final String id;
+    // режим работы - дата.час открытия отделения и продолжительность работы в часах
     private final List<ScheduleItem> worksSchedule;
+    // время на обработку груза - принять, распаковать, оформить, подготовить для дальнейшей отправки
     private final int processingDelay;
 
     public List<ScheduleItem> findSchedulesItem(DateTime dateTime) {
@@ -26,7 +28,7 @@ public class BranchDto {
                             .collect(Collectors.toList());
     }
 
-    public Optional<ScheduleItem> findNearestScheduleItem(DateTime dateTime) {
+    public Optional<ScheduleItem> findNextScheduleItem(DateTime dateTime) {
         return worksSchedule.stream()
                             .filter(s -> s.getDateTime().after(dateTime))
                             .min((a, b) -> a.getDateTime().after(b.getDateTime()) ? 1 : -1);

@@ -1,7 +1,7 @@
 package ru.iportnyagin.logistic.v2;
 
 import lombok.Data;
-import ru.iportnyagin.logistic.v2.dto.RouteDto;
+import ru.iportnyagin.logistic.v2.dto.RideDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,33 +12,29 @@ import java.util.List;
 @Data
 public class Path {
 
-    private List<RouteDto> routes;
+    private List<RideDto> rides;
     // дата-время, с которого начинается построение пути
     private DateTime fromDateTime;
 
     public Path(DateTime fromDateTime) {
-        this.routes = new ArrayList<>();
+        this.rides = new ArrayList<>();
         this.fromDateTime = fromDateTime;
     }
 
     public Path(Path source) {
-        this.routes = new ArrayList<>();
-        this.routes.addAll(source.getRoutes());
+        this.rides = new ArrayList<>();
+        this.rides.addAll(source.getRides());
         this.fromDateTime = source.getFromDateTime();
     }
 
     public int getPathDuration() {
-        final DateTime endDateTime = routes.get(routes.size() - 1).getArrivingAt();
+        final DateTime endDateTime = rides.get(rides.size() - 1).getArrivingAt();
         return endDateTime.hoursBetween(fromDateTime);
-    }
-
-    public DateTime getPathStartingAt() {
-        return routes.get(0).getStartingAt();
     }
 
     @Override
     public String toString() {
-        return routes.toString() + " in " + getPathDuration() + " hours";
+        return rides.toString() + " in " + getPathDuration() + " hours";
     }
 
 }

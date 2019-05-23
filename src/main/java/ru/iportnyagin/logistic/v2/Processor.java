@@ -2,10 +2,10 @@ package ru.iportnyagin.logistic.v2;
 
 import ru.iportnyagin.logistic.v2.dto.BranchDto;
 import ru.iportnyagin.logistic.v2.dto.CargoDto;
+import ru.iportnyagin.logistic.v2.dto.RideDto;
 import ru.iportnyagin.logistic.v2.dto.RouteDto;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,19 +33,29 @@ public class Processor {
                                        DateTime fromDate,
                                        int searchDuration) {
 
-        List<Path> paths = findAllPathsBetween(currentLocation,
-                                               cargo.getDestination(),
-                                               fromDate,
-                                               new DateTime(fromDate, searchDuration));
         System.out.println(String.format("will search path from %s to %s begin at %s",
                                          currentLocation,
                                          cargo.getDestination(),
                                          fromDate));
 
+        List<Path> paths = new ArrayList<>();
+
+        DateTime toDate = new DateTime(fromDate, searchDuration);
+
+        List<RideDto> outgoingRides = findOutgoingRides(currentLocation, new ArrayList<>(), fromDate, toDate);
+
+        if (outgoingRides.isEmpty()) {
+            return Optional.empty();
+        }
+
+        for (RideDto ride : outgoingRides) {
+            goByRoute(paths, new Path(fromDate), ride, cargo.getDestination(), new ArrayList<>(), toDate);
+        }
+
         paths.forEach(System.out::println);
 
         if (paths.isEmpty()) {
-            System.out.println(String.format("no routes between %s and %s",
+            System.out.println(String.format("no rides between %s and %s",
                                              currentLocation.getId(),
                                              cargo.getDestination().getId()));
             return Optional.empty();
@@ -55,57 +65,42 @@ public class Processor {
                     .min((a, b) -> a.getPathDuration() > b.getPathDuration() ? 1 : -1);
     }
 
-    private List<Path> findAllPathsBetween(BranchDto source, BranchDto target, DateTime fromDate, DateTime toDate) {
-
-        List<Path> result = new ArrayList<>();
-        List<RouteDto> outgoingRoutes = findOutgoingRoutes(source, new ArrayList<>(), fromDate, toDate);
-        if (outgoingRoutes.isEmpty()) {
-            return Collections.emptyList();
-        }
-
-        for (RouteDto route : outgoingRoutes) {
-            goByRoute(result, new Path(fromDate), route, target, new ArrayList<>(), toDate);
-        }
-
-        return result;
-    }
-
     private void goByRoute(List<Path> result,
                            Path path,
-                           RouteDto route,
+                           RideDto ride,
                            BranchDto target,
                            List<BranchDto> visited,
                            DateTime toDate) {
 
-        BranchDto arrived = route.getTo();
-        path.getRoutes().add(route);
-        visited.add(route.getFrom());
+        BranchDto arrived = ride.getTo();
+        path.getRides().add(ride);
+        visited.add(ride.getFrom());
 
         if (arrived == target) {
             result.add(path);
             return;
         }
 
-        Optional<DateTime> endOfProcessing = processInBranch(arrived, route.getArrivingAt());
+        Optional<DateTime> endOfProcessing = processInBranch(arrived, ride.getArrivingAt());
 
         if (!endOfProcessing.isPresent()) {
             return;
         }
 
-        List<RouteDto> outgoingRoutes = findOutgoingRoutes(arrived, visited, endOfProcessing.get(), toDate);
+        List<RideDto> outgoingRoutes = findOutgoingRides(arrived, visited, endOfProcessing.get(), toDate);
 
         if (outgoingRoutes.isEmpty()) {
             return;
         }
 
-        for (RouteDto routeDto : outgoingRoutes) {
-            goByRoute(result, new Path(path), routeDto, target, new ArrayList<>(visited), toDate);
+        for (RideDto ride2 : outgoingRoutes) {
+            goByRoute(result, new Path(path), ride2, target, new ArrayList<>(visited), toDate);
         }
     }
 
     private Optional<DateTime> processInBranch(BranchDto branch, final DateTime dateTime) {
 
-        Optional<ScheduleItem> scheduleItem = branch.findNearestScheduleItem(dateTime);
+        Optional<ScheduleItem> scheduleItem = branch.findNextScheduleItem(dateTime);
         if (!scheduleItem.isPresent()) {
             return Optional.empty();
         }
@@ -122,7 +117,7 @@ public class Processor {
                 duration.addHour(worksDuration);
                 processingDuration = processingDuration - worksDuration;
 
-                Optional<ScheduleItem> nextWorkDay = branch.findNearestScheduleItem(duration.getDateTime());
+                Optional<ScheduleItem> nextWorkDay = branch.findNextScheduleItem(duration.getDateTime());
                 if (!nextWorkDay.isPresent()) {
                     return Optional.empty();
                 }
@@ -135,13 +130,31 @@ public class Processor {
         return Optional.of(duration.getDateTime());
     }
 
-    private List<RouteDto> findOutgoingRoutes(BranchDto fromBranch,
-                                              List<BranchDto> visited,
-                                              DateTime fromDate,
-                                              DateTime toDate) {
-        return config.getOutgoingRoutes(fromBranch, fromDate, toDate).stream()
-                     .filter(r -> !visited.contains(r.getTo()))
-                     .collect(Collectors.toList());
+    private List<RideDto> findOutgoingRides(BranchDto fromBranch,
+                                            List<BranchDto> visited,
+                                            DateTime fromDate,
+                                            DateTime toDate) {
+
+        List<RouteDto> routes = config.getRoutes().stream()
+                                      .filter(r -> r.getFrom().equals(fromBranch)
+                                              && !visited.contains(r.getTo()))
+                                      .collect(Collectors.toList());
+
+        List<RideDto> result = new ArrayList<>();
+
+        for (RouteDto r : routes) {
+            List<ScheduleItem> scheduleItems = r.getSchedule()
+                                                .stream()
+                                                .filter(i -> i.getDateTime().after(fromDate) && i.getDateTime()
+                                                                                                 .before(toDate))
+                                                .sorted((a, b) -> a.getDateTime().after(b.getDateTime()) ? 1 : -1)
+                                                .collect(Collectors.toList());
+            for (ScheduleItem i : scheduleItems) {
+                result.add(new RideDto(r.getDescription(), r.getFrom(), r.getTo(), i));
+            }
+        }
+
+        return result;
     }
 
 }

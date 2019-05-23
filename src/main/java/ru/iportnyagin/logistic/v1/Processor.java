@@ -29,7 +29,7 @@ public class Processor {
         paths.forEach(p -> System.out.println(p.getRoutes()));
 
         if (paths.isEmpty()) {
-            System.out.println(String.format("no routes between {} and {}",
+            System.out.println(String.format("no rides between {} and {}",
                                              currentLocation.getId(),
                                              cargo.getDestination().getId()));
             return Optional.empty();
