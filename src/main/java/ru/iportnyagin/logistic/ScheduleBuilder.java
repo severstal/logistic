@@ -1,4 +1,4 @@
-package ru.iportnyagin.logistic.v2;
+package ru.iportnyagin.logistic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,6 @@ public class ScheduleBuilder {
     private DateTime dateTime;
     private int hour;
     private int intValue;
-    private String stringValue;
     private int repeatPeriodInHour;
     private int repeatCount;
 
@@ -22,33 +21,28 @@ public class ScheduleBuilder {
         return new ScheduleBuilder();
     }
 
-    public ScheduleBuilder dateTime(DateTime dateTime) {
-        this.dateTime = dateTime;
+    public ScheduleBuilder dateTime(DateTime dt) {
+        dateTime = dt;
         return this;
     }
 
-    public ScheduleBuilder hour(int hour) {
-        this.hour = hour;
+    public ScheduleBuilder hour(int h) {
+        hour = h;
         return this;
     }
 
-    public ScheduleBuilder intValue(int intValue) {
-        this.intValue = intValue;
+    public ScheduleBuilder intValue(int v) {
+        intValue = v;
         return this;
     }
 
-    public ScheduleBuilder repeatPeriodInHour(int repeatPeriodInHour) {
-        this.repeatPeriodInHour = repeatPeriodInHour;
+    public ScheduleBuilder repeatPeriodInHour(int r) {
+        repeatPeriodInHour = r;
         return this;
     }
 
-    public ScheduleBuilder repeatCount(int repeatCount) {
-        this.repeatCount = repeatCount;
-        return this;
-    }
-
-    public ScheduleBuilder stringValue(String stringValue) {
-        this.stringValue = stringValue;
+    public ScheduleBuilder repeatCount(int r) {
+        repeatCount = r;
         return this;
     }
 
@@ -57,9 +51,7 @@ public class ScheduleBuilder {
 
         for (int i = 0; i < repeatCount; i++) {
             result.add(new ScheduleItem(
-                    new DateTime(dateTime, i * repeatPeriodInHour),
-                    intValue,
-                    stringValue));
+                    new DateTime(dateTime, i * repeatPeriodInHour), intValue));
         }
 
         return result;
@@ -69,8 +61,8 @@ public class ScheduleBuilder {
      * создаст расписание пнд-птн с 0-го дня по 365. 0 день - пнд. високосности нет.
      */
     public List<ScheduleItem> buildWorkDaysForYear() {
-        DateTime dateTime = new DateTime(0, this.hour);
-        this.repeatPeriodInHour = 24;
+        DateTime dateTime = new DateTime(0, hour);
+        repeatPeriodInHour = 24;
 
         List<ScheduleItem> result = new ArrayList<>();
 
@@ -80,9 +72,7 @@ public class ScheduleBuilder {
                 continue;
             }
 
-            result.add(new ScheduleItem(new DateTime(dateTime, i * repeatPeriodInHour),
-                                        intValue,
-                                        stringValue));
+            result.add(new ScheduleItem(new DateTime(dateTime, i * repeatPeriodInHour), intValue));
         }
 
         return result;

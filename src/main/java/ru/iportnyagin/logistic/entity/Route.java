@@ -1,14 +1,14 @@
-package ru.iportnyagin.logistic.v2.dto;
+package ru.iportnyagin.logistic.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import ru.iportnyagin.logistic.v2.ScheduleItem;
+import ru.iportnyagin.logistic.ScheduleItem;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * RouteDto - маршрут, откуда, куда, расписание
+ * Route - маршрут, откуда, куда, расписание
  * from
  * to
  * startingAt
@@ -20,18 +20,18 @@ import java.util.stream.Collectors;
  */
 @Getter
 @RequiredArgsConstructor
-public class RouteDto {
+public class Route {
 
     private final String description;
-    private final BranchDto from;
-    private final BranchDto to;
+    private final Branch from;
+    private final Branch to;
     private final List<ScheduleItem> schedule;
 
     @Override
     public String toString() {
         return description + " " + schedule.stream()
                                            .limit(5)
-                                           .map(item -> item.getDateTime())
+                                           .map(ScheduleItem::getStartAt)
                                            .collect(Collectors.toList());
     }
 
