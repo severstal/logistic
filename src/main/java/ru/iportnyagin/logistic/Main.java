@@ -9,13 +9,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Config config = new ConfigImpl();
+        String configString = new ResourceFile("config.json").read();
+
+        Config config = new JsonConfig(configString);
+
+        System.out.println(config);
+
         Cargo cargo = new Cargo(config.getBranches().get(4));
         PathSearch pathSearch = new FastPathSearch(config);
 
         Optional<Path> bestPath = pathSearch.find(cargo,
                                                   config.getBranches().get(0),
-                                                  new DateTime(0 ,5),
+                                                  new DateTime(0, 5),
                                                   100);
 
         System.out.println();

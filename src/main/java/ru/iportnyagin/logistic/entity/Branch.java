@@ -11,7 +11,7 @@ import java.util.Optional;
 /**
  * Branch - отделение
  * worksSchedule - график работы (дата.час открытия отделения и продолжительность работы в часах)
- * processingDelay - время на обработку одного груза (принять, распаковать, оформить, подготовить для дальнейшей отправки)
+ * processingDuration - время на обработку одного груза (принять, распаковать, оформить, подготовить для дальнейшей отправки)
  */
 @Getter
 @RequiredArgsConstructor
@@ -19,12 +19,12 @@ public class Branch {
 
     private final String id;
     private final List<ScheduleItem> worksSchedule;
-    private final int processingDelay;
+    private final int processingDuration;
 
     public Optional<Processing> processInBranch(DateTime startAt) {
 
         DateTime startProcessingAt = startAt;
-        int processingDuration = getProcessingDelay();
+        int processingDuration = getProcessingDuration();
 
         if (processingDuration == 0) {
             return Optional.of(new Processing(this, startAt, startAt));

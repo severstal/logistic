@@ -21,8 +21,8 @@ import ru.iportnyagin.logistic.ScheduleItem;
 public class Shipping implements Stage {
 
     private final String description;
-    private final Branch from;
-    private final Branch to;
+    private final String fromBranch;
+    private final String toBranch;
     private final ScheduleItem schedule;
 
     public DateTime getArrivingAt() {
@@ -31,7 +31,7 @@ public class Shipping implements Stage {
 
     @Override
     public String toString() {
-        return from.getId() + ":" + schedule.getStartAt() + "-" + to.getId() + ":" + getArrivingAt() + "(" + schedule.getDuration() + "h)";
+        return fromBranch + ":" + schedule.getStartAt() + "-" + toBranch + ":" + getArrivingAt() + "(" + schedule.getDuration() + "h)";
     }
 
     @Override

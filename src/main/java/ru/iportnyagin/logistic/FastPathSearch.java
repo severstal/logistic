@@ -46,14 +46,17 @@ public class FastPathSearch implements PathSearch {
 
         DateTime toDate = new DateTime(fromDate, searchDuration);
 
-        List<Shipping> outgoingShippings = findOutgoingShippings(currentLocation, new ArrayList<>(), firstProcessing.get().endAt(), toDate);
+        List<Shipping> outgoingShippings = findOutgoingShippings(currentLocation,
+                                                                 new ArrayList<>(),
+                                                                 firstProcessing.get().endAt(),
+                                                                 toDate);
         if (outgoingShippings.isEmpty()) {
             return Optional.empty();
         }
 
         List<Path> paths = new ArrayList<>();
-        for (Shipping ride : outgoingShippings) {
-            goByRoute(paths, new Path(firstProcessing.get()), ride, cargo.getDestination(), new ArrayList<>(), toDate);
+        for (Shipping shipping : outgoingShippings) {
+            goByRoute(paths, new Path(firstProcessing.get()), shipping, cargo.getDestination(), new ArrayList<>(), toDate);
         }
 
         paths.forEach(System.out::println);
@@ -80,12 +83,15 @@ public class FastPathSearch implements PathSearch {
                            Path path,
                            Shipping shipping,
                            Branch target,
-                           List<Branch> visited,
+                           List<String> visited,
                            DateTime toDate) {
 
-        Branch arrived = shipping.getTo();
+        Branch arrived = config.getBranches()
+                                         .stream()
+                                         .filter(b -> b.getId().equals(shipping.getToBranch()))
+                                         .findFirst().orElseThrow(RuntimeException::new);
         path.getStages().add(shipping);
-        visited.add(shipping.getFrom());
+        visited.add(shipping.getFromBranch());
 
         Optional<Processing> processing = arrived.processInBranch(shipping.getArrivingAt());
         if (!processing.isPresent()) {
@@ -94,7 +100,7 @@ public class FastPathSearch implements PathSearch {
 
         path.getStages().add(processing.get());
 
-        if (arrived == target) {
+        if (arrived.getId().equals(target.getId())) {
             result.add(path);
             return;
         }
@@ -111,13 +117,13 @@ public class FastPathSearch implements PathSearch {
 
 
     private List<Shipping> findOutgoingShippings(Branch fromBranch,
-                                                 List<Branch> visited,
+                                                 List<String> visited,
                                                  DateTime fromDate,
                                                  DateTime toDate) {
 
         List<Route> routes = config.getRoutes().stream()
-                                   .filter(r -> r.getFrom().equals(fromBranch)
-                                           && !visited.contains(r.getTo()))
+                                   .filter(r -> r.getFromBranch().equals(fromBranch.getId())
+                                           && !visited.contains(r.getToBranch()))
                                    .collect(Collectors.toList());
 
         List<Shipping> result = new ArrayList<>();
@@ -130,7 +136,7 @@ public class FastPathSearch implements PathSearch {
                                                 .sorted(new ScheduleItem.StartAtComparator())
                                                 .collect(Collectors.toList());
             for (ScheduleItem i : scheduleItems) {
-                result.add(new Shipping(r.getDescription(), r.getFrom(), r.getTo(), i));
+                result.add(new Shipping(r.getDescription(), r.getFromBranch(), r.getToBranch(), i));
             }
         }
 
