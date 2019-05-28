@@ -1,5 +1,6 @@
 package ru.iportnyagin.logistic;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +18,7 @@ public class ScheduleItem {
     private final DateTime startAt;
     private final int duration;
 
+    @JsonIgnore
     public DateTime getEndAt() {
         return new DateTime(startAt, duration);
     }
