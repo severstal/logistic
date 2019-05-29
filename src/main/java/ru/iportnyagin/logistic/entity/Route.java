@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
 public class Route {
 
     private final String description;
-    private final String fromBranch;
-    private final String toBranch;
+    private final Branch fromBranch;
+    private final Branch toBranch;
     private final List<ScheduleItem> schedule;
 
     @Override

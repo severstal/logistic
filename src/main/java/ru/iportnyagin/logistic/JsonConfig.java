@@ -44,7 +44,7 @@ public class JsonConfig implements Config {
 
     @Override
     public String toString() {
-        return getBranches().toString() + "\n" + getRoutes().toString();
+        return "branches:" + getBranches().toString() + "\n" + "routes:" + getRoutes().toString();
     }
 
     private void init() {
@@ -55,7 +55,7 @@ public class JsonConfig implements Config {
                                      .map(BranchDto::toBranch)
                                      .collect(Collectors.toList());
             this.routes = configDto.getRoutes().stream()
-                                   .map(RouteDto::toRoute)
+                                   .map(r -> r.toRoute(branches))
                                    .collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);

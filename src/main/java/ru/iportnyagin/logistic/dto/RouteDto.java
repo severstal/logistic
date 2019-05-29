@@ -1,6 +1,7 @@
 package ru.iportnyagin.logistic.dto;
 
 import lombok.NoArgsConstructor;
+import ru.iportnyagin.logistic.entity.Branch;
 import ru.iportnyagin.logistic.entity.Route;
 
 import java.util.List;
@@ -57,10 +58,16 @@ public class RouteDto {
         this.schedule = schedule;
     }
 
-    public Route toRoute() {
+    public Route toRoute(List<Branch> branches) {
         return new Route(description,
-                         fromBranch,
-                         toBranch,
+                         branches.stream()
+                                 .filter(b -> b.getId().equals(fromBranch))
+                                 .findFirst()
+                                 .orElseThrow(RuntimeException::new),
+                         branches.stream()
+                                 .filter(b -> b.getId().equals(toBranch))
+                                 .findFirst()
+                                 .orElseThrow(RuntimeException::new),
                          schedule.stream()
                                  .map(s -> s.toScheduleItem())
                                  .collect(Collectors.toList()));

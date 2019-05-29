@@ -13,6 +13,5 @@ public interface PathSearch {
 
     Optional<Path> find(Cargo cargo,
                         Branch currentLocation,
-                        DateTime fromDate,
-                        int searchDuration);
+                        DateTime fromDate);
 }

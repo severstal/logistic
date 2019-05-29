@@ -20,8 +20,7 @@ public class Main {
 
         Optional<Path> bestPath = pathSearch.find(cargo,
                                                   config.getBranches().get(0),
-                                                  new DateTime(0, 5),
-                                                  100);
+                                                  new DateTime(0, 5));
 
         System.out.println();
         System.out.println("best path: " + bestPath.map(Path::toString).orElse("no result"));

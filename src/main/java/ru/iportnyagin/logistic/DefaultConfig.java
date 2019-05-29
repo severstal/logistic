@@ -81,8 +81,8 @@ public class DefaultConfig implements Config {
         );
 
         routes = Arrays.asList(new Route("ab",
-                                         "A",
-                                         "B",
+                                         branchA,
+                                         branchB,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 7))
                                                            .intValue(1)
@@ -91,8 +91,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("ba",
-                                         "B",
-                                         "A",
+                                         branchB,
+                                         branchA,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 10))
                                                            .intValue(1)
@@ -101,8 +101,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("ac",
-                                         "A",
-                                         "C",
+                                         branchA,
+                                         branchC,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 8))
                                                            .intValue(2)
@@ -111,8 +111,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("ca",
-                                         "C",
-                                         "A",
+                                         branchC,
+                                         branchA,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 12))
                                                            .intValue(2)
@@ -121,8 +121,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("af",
-                                         "A",
-                                         "F",
+                                         branchA,
+                                         branchF,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 10))
                                                            .intValue(3)
@@ -131,8 +131,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("fa",
-                                         "F",
-                                         "A",
+                                         branchF,
+                                         branchA,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 15))
                                                            .intValue(3)
@@ -141,8 +141,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("bc",
-                                         "B",
-                                         "C",
+                                         branchB,
+                                         branchC,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 12))
                                                            .intValue(1)
@@ -151,8 +151,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("cb",
-                                         "C",
-                                         "B",
+                                         branchC,
+                                         branchB,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 16))
                                                            .intValue(1)
@@ -161,8 +161,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("cd",
-                                         "C",
-                                         "D",
+                                         branchC,
+                                         branchD,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 11))
                                                            .intValue(3)
@@ -171,8 +171,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("dc",
-                                         "D",
-                                         "C",
+                                         branchD,
+                                         branchC,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 10))
                                                            .intValue(3)
@@ -181,8 +181,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("bd",
-                                         "B",
-                                         "D",
+                                         branchB,
+                                         branchD,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 8))
                                                            .intValue(2)
@@ -191,8 +191,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("be",
-                                         "B",
-                                         "E",
+                                         branchB,
+                                         branchE,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 8))
                                                            .intValue(5)
@@ -201,8 +201,8 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("eb",
-                                         "E",
-                                         "B",
+                                         branchE,
+                                         branchB,
                                          ScheduleBuilder.builder()
                                                            .dateTime(new DateTime(0, 11))
                                                            .intValue(5)
@@ -211,56 +211,56 @@ public class DefaultConfig implements Config {
                                                            .build()),
 
                                new Route("de",
-                                         "D",
-                                         "E",
+                                         branchD,
+                                         branchE,
                                          ScheduleBuilder.builder()
                                                            .hour(16)
                                                            .intValue(2)
                                                            .buildWorkDaysForYear()),
 
                                new Route("eh",
-                                         "E",
-                                         "H",
+                                         branchE,
+                                         branchH,
                                          ScheduleBuilder.builder()
                                                            .hour(11)
                                                            .intValue(2)
                                                            .buildWorkDaysForYear()),
 
                                new Route("he",
-                                         "H",
-                                         "E",
+                                         branchH,
+                                         branchE,
                                          ScheduleBuilder.builder()
                                                            .hour(15)
                                                            .intValue(2)
                                                            .buildWorkDaysForYear()),
 
                                new Route("hf",
-                                         "H",
-                                         "F",
+                                         branchH,
+                                         branchF,
                                          ScheduleBuilder.builder()
                                                            .hour(12)
                                                            .intValue(2)
                                                            .buildWorkDaysForYear()),
 
                                new Route("fh",
-                                         "F",
-                                         "H",
+                                         branchF,
+                                         branchH,
                                          ScheduleBuilder.builder()
                                                            .hour(12)
                                                            .intValue(2)
                                                            .buildWorkDaysForYear()),
 
                                new Route("fg",
-                                         "F",
-                                         "G",
+                                         branchF,
+                                         branchG,
                                          ScheduleBuilder.builder()
                                                            .hour(11)
                                                            .intValue(2)
                                                            .buildWorkDaysForYear()),
 
                                new Route("gf",
-                                         "G",
-                                         "F",
+                                         branchG,
+                                         branchF,
                                          ScheduleBuilder.builder()
                                                            .hour(15)
                                                            .intValue(2)

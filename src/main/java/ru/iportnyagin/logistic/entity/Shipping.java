@@ -21,17 +21,19 @@ import ru.iportnyagin.logistic.ScheduleItem;
 public class Shipping implements Stage {
 
     private final String description;
-    private final String fromBranch;
-    private final String toBranch;
+    private final Branch fromBranch;
+    private final Branch toBranch;
     private final ScheduleItem schedule;
 
+    // todo оставить getEndAt из Stage ?
     public DateTime getArrivingAt() {
         return schedule.getEndAt();
     }
 
     @Override
     public String toString() {
-        return fromBranch + ":" + schedule.getStartAt() + "-" + toBranch + ":" + getArrivingAt() + "(" + schedule.getDuration() + "h)";
+        return fromBranch.getId() + ":" + schedule.getStartAt() + "-" + toBranch.getId() + ":" + getArrivingAt() + "(" + schedule
+                .getDuration() + "h)";
     }
 
     @Override
