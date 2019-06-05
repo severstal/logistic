@@ -35,12 +35,11 @@ public class FastPathSearch implements PathSearch {
                                          cargo.getDestination(),
                                          fromDate));
 
-        // todo переименовать - два метода с одинаковым названием
-        Optional<Path> basePath = processInBranchAndGoByOutgoings(new Path(),
-                                                                  currentLocation,
-                                                                  cargo.getDestination(),
-                                                                  fromDate,
-                                                                  new ArrayList<>());
+        Optional<Path> basePath = findOnePath(new Path(),
+                                              currentLocation,
+                                              cargo.getDestination(),
+                                              fromDate,
+                                              new ArrayList<>());
 
         System.out.println("found base path:" + basePath.map(Path::toString).orElse("no result"));
 
@@ -48,13 +47,13 @@ public class FastPathSearch implements PathSearch {
 
         List<Path> result = new ArrayList<>();
 
-        processInBranchAndGoByOutgoings(result,
-                                        new Path(),
-                                        currentLocation,
-                                        cargo.getDestination(),
-                                        new ArrayList<>(),
-                                        fromDate,
-                                        new DateTime(fromDate, searchDuration));
+        findAllPaths(result,
+                     new Path(),
+                     currentLocation,
+                     cargo.getDestination(),
+                     new ArrayList<>(),
+                     fromDate,
+                     new DateTime(fromDate, searchDuration));
 
         result.forEach(System.out::println);
         if (result.isEmpty()) {
@@ -87,13 +86,13 @@ public class FastPathSearch implements PathSearch {
      * @param startAt       текущая дата
      * @param toDate        максимальная дата, в течении которой нужно добраться до целевеого пункта
      */
-    private void processInBranchAndGoByOutgoings(List<Path> result,
-                                                 Path path,
-                                                 Branch currentBranch,
-                                                 Branch targetBranch,
-                                                 List<Branch> visited,
-                                                 DateTime startAt,
-                                                 DateTime toDate) {
+    private void findAllPaths(List<Path> result,
+                              Path path,
+                              Branch currentBranch,
+                              Branch targetBranch,
+                              List<Branch> visited,
+                              DateTime startAt,
+                              DateTime toDate) {
 
         Optional<Processing> curProcessing = currentBranch.processInBranch(startAt);
 
@@ -116,13 +115,13 @@ public class FastPathSearch implements PathSearch {
 
             for (Shipping outShipping : outgoingShippings) {
                 path.getStages().add(outShipping);
-                processInBranchAndGoByOutgoings(result,
-                                                new Path(path),
-                                                outShipping.getToBranch(),
-                                                targetBranch,
-                                                new ArrayList<>(visited),
-                                                outShipping.getArrivingAt(),
-                                                toDate);
+                findAllPaths(result,
+                             new Path(path),
+                             outShipping.getToBranch(),
+                             targetBranch,
+                             new ArrayList<>(visited),
+                             outShipping.endAt(),
+                             toDate);
             }
         }
     }
@@ -175,11 +174,11 @@ public class FastPathSearch implements PathSearch {
      * @param visited       список для сборки посещенных отделений, в рекурсивный вызов нужно передавать клон
      * @return
      */
-    private Optional<Path> processInBranchAndGoByOutgoings(Path path,
-                                                           Branch currentBranch,
-                                                           Branch targetBranch,
-                                                           DateTime startAt,
-                                                           List<Branch> visited) {
+    private Optional<Path> findOnePath(Path path,
+                                       Branch currentBranch,
+                                       Branch targetBranch,
+                                       DateTime startAt,
+                                       List<Branch> visited) {
 
         Optional<Processing> curProcessing = currentBranch.processInBranch(startAt);
 
@@ -201,11 +200,11 @@ public class FastPathSearch implements PathSearch {
 
                     path.getStages().add(outShipping);
 
-                    Optional<Path> basePath = processInBranchAndGoByOutgoings(new Path(path),
-                                                                              outShipping.getToBranch(),
-                                                                              targetBranch,
-                                                                              outShipping.getArrivingAt(),
-                                                                              new ArrayList<>(visited));
+                    Optional<Path> basePath = findOnePath(new Path(path),
+                                                          outShipping.getToBranch(),
+                                                          targetBranch,
+                                                          outShipping.endAt(),
+                                                          new ArrayList<>(visited));
                     if (basePath.isPresent()) { // достигнут нужный пункт, конец рекурсии/поиска
                         return basePath;
                     }

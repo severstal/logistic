@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 /**
- * ResourceFile.
+ * Доступ к файлам-"ресурсам"
  */
 @RequiredArgsConstructor
 public class ResourceFile {
