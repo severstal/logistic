@@ -2,6 +2,7 @@ package ru.iportnyagin.logistic.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import ru.iportnyagin.logistic.Config;
 import ru.iportnyagin.logistic.DateTime;
 import ru.iportnyagin.logistic.ScheduleItem;
 
@@ -21,25 +22,34 @@ public class Branch {
     private final List<ScheduleItem> worksSchedule;
     private final int processingDuration;
 
-    public Optional<Processing> processInBranch(DateTime startAt) {
+    public Optional<Processing> processInBranch(final DateTime startAt, final boolean afterShip) {
 
-        DateTime startProcessingAt = startAt;
-        int processingDuration = getProcessingDuration();
-
-        if (processingDuration == 0) {
+        if (getProcessingDuration() == 0) {
             return Optional.of(new Processing(this, startAt, startAt));
         }
 
-        while (processingDuration > 0) {
+        DateTime startProcessingAt = startAt;
+        int processingDurationRemainder = getProcessingDuration();
+        boolean justArrived = afterShip;
 
-            Optional<ScheduleItem> currentOrNextWorkDay = getCurrentOrNextWorkDay(startProcessingAt);
+        while (processingDurationRemainder > 0) {
+
+            Optional<ScheduleItem> currentOrNextWorkDay = getCurrentOrNextWorkPeriod(startProcessingAt);
 
             if (!currentOrNextWorkDay.isPresent()) {
                 return Optional.empty();
             }
 
-            if (processingDuration > currentOrNextWorkDay.get().getDuration()) {
-                processingDuration = processingDuration - currentOrNextWorkDay.get().getDuration();
+            if (justArrived) {
+                justArrived = false;
+                if (currentOrNextWorkDay.get().getStartAt()
+                                        .hoursBetween(startProcessingAt) > Config.OPENING_BRANCH_WAIT_TIME_IN_HOURS) {
+                    return Optional.empty();
+                }
+            }
+
+            if (processingDurationRemainder > currentOrNextWorkDay.get().getDuration()) {
+                processingDurationRemainder = processingDurationRemainder - currentOrNextWorkDay.get().getDuration();
                 startProcessingAt = currentOrNextWorkDay.get().getEndAt();
             } else {
                 DateTime dateTime = startAt.after(currentOrNextWorkDay.get().getStartAt())
@@ -48,26 +58,26 @@ public class Branch {
                 return Optional.of(new Processing(this,
                                                   startAt,
                                                   new DateTime(dateTime,
-                                                               processingDuration)));
+                                                               processingDurationRemainder)));
             }
         }
 
         throw new RuntimeException("error: point should not be reachable");
     }
 
-    private Optional<ScheduleItem> getCurrentOrNextWorkDay(DateTime dateTime) {
+    private Optional<ScheduleItem> getCurrentOrNextWorkPeriod(final DateTime startProcessingAt) {
 
-        Optional<ScheduleItem> current = worksSchedule.stream()
-                                                      .filter(s -> s.getStartAt().before(dateTime)
-                                                              && s.getEndAt().after(dateTime))
-                                                      .findFirst();
+        Optional<ScheduleItem> currentWorkPeriod = worksSchedule.stream()
+                                                                .filter(s -> s.getStartAt().before(startProcessingAt)
+                                                                        && s.getEndAt().after(startProcessingAt))
+                                                                .findFirst();
 
-        if (current.isPresent()) {
-            return current;
+        if (currentWorkPeriod.isPresent()) {
+            return currentWorkPeriod;
         }
 
         return worksSchedule.stream()
-                            .filter(s -> s.getStartAt().after(dateTime))
+                            .filter(s -> s.getStartAt().after(startProcessingAt))
                             .min(new ScheduleItem.StartAtComparator());
     }
 

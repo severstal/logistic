@@ -14,4 +14,6 @@ public interface Config {
 
     List<Route> getRoutes();
 
+    int OPENING_BRANCH_WAIT_TIME_IN_HOURS = 12;
+
 }
