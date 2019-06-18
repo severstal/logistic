@@ -2,6 +2,7 @@ package ru.iportnyagin.logistic.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import ru.iportnyagin.logistic.Config;
 import ru.iportnyagin.logistic.DateTime;
 import ru.iportnyagin.logistic.ScheduleItem;
@@ -22,7 +23,8 @@ public class Branch {
     private final List<ScheduleItem> worksSchedule;
     private final int processingDuration;
 
-    public Optional<Processing> processInBranch(final DateTime startAt, final boolean afterShip) {
+    @NotNull
+    public Optional<Processing> processInBranch(@NotNull final DateTime startAt, final boolean afterShip) {
 
         if (getProcessingDuration() == 0) {
             return Optional.of(new Processing(this, startAt, startAt));
@@ -65,7 +67,8 @@ public class Branch {
         throw new RuntimeException("error: point should not be reachable");
     }
 
-    private Optional<ScheduleItem> getCurrentOrNextWorkPeriod(final DateTime startProcessingAt) {
+    @NotNull
+    private Optional<ScheduleItem> getCurrentOrNextWorkPeriod(@NotNull final DateTime startProcessingAt) {
 
         Optional<ScheduleItem> currentWorkPeriod = worksSchedule.stream()
                                                                 .filter(s -> s.getStartAt().before(startProcessingAt)

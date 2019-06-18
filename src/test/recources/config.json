@@ -1,0 +1,1564 @@
+{
+  "branches" : [ {
+    "id" : "A",
+    "worksSchedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 0
+      },
+      "duration" : 24
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 0
+      },
+      "duration" : 24
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 0
+      },
+      "duration" : 24
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 0
+      },
+      "duration" : 24
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 0
+      },
+      "duration" : 24
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 0
+      },
+      "duration" : 24
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 0
+      },
+      "duration" : 24
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 0
+      },
+      "duration" : 24
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 0
+      },
+      "duration" : 24
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 0
+      },
+      "duration" : 24
+    } ],
+    "processingDuration" : 3
+  }, {
+    "id" : "B",
+    "worksSchedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 8
+      },
+      "duration" : 10
+    } ],
+    "processingDuration" : 2
+  }, {
+    "id" : "C",
+    "worksSchedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 9
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 9
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 9
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 9
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 9
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 9
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 9
+      },
+      "duration" : 8
+    } ],
+    "processingDuration" : 5
+  }, {
+    "id" : "D",
+    "worksSchedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 8
+      },
+      "duration" : 14
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 8
+      },
+      "duration" : 14
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 8
+      },
+      "duration" : 14
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 8
+      },
+      "duration" : 14
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 8
+      },
+      "duration" : 14
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 8
+      },
+      "duration" : 14
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 8
+      },
+      "duration" : 14
+    } ],
+    "processingDuration" : 2
+  }, {
+    "id" : "E",
+    "worksSchedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 10
+      },
+      "duration" : 12
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 10
+      },
+      "duration" : 12
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 10
+      },
+      "duration" : 12
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 10
+      },
+      "duration" : 12
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 10
+      },
+      "duration" : 12
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 10
+      },
+      "duration" : 12
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 10
+      },
+      "duration" : 12
+    } ],
+    "processingDuration" : 5
+  }, {
+    "id" : "F",
+    "worksSchedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 10
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 10
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 10
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 10
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 10
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 10
+      },
+      "duration" : 8
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 10
+      },
+      "duration" : 8
+    } ],
+    "processingDuration" : 4
+  }, {
+    "id" : "G",
+    "worksSchedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 8
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 8
+      },
+      "duration" : 10
+    } ],
+    "processingDuration" : 3
+  }, {
+    "id" : "H",
+    "worksSchedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 10
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 10
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 10
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 10
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 10
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 10
+      },
+      "duration" : 10
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 10
+      },
+      "duration" : 10
+    } ],
+    "processingDuration" : 2
+  } ],
+  "routes" : [ {
+    "description" : "ab",
+    "fromBranch" : "A",
+    "toBranch" : "B",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 7
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 7
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 7
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 7
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 7
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 7
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 7
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 7
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 7
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 7
+      },
+      "duration" : 1
+    } ]
+  }, {
+    "description" : "ba",
+    "fromBranch" : "B",
+    "toBranch" : "A",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 10
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 10
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 10
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 10
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 10
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 10
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 10
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 10
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 10
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 10
+      },
+      "duration" : 1
+    } ]
+  }, {
+    "description" : "ac",
+    "fromBranch" : "A",
+    "toBranch" : "C",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 8
+      },
+      "duration" : 2
+    } ]
+  }, {
+    "description" : "ca",
+    "fromBranch" : "C",
+    "toBranch" : "A",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 12
+      },
+      "duration" : 2
+    } ]
+  }, {
+    "description" : "af",
+    "fromBranch" : "A",
+    "toBranch" : "F",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 10
+      },
+      "duration" : 3
+    } ]
+  }, {
+    "description" : "fa",
+    "fromBranch" : "F",
+    "toBranch" : "A",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 15
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 15
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 15
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 15
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 15
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 15
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 15
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 15
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 15
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 15
+      },
+      "duration" : 3
+    } ]
+  }, {
+    "description" : "bc",
+    "fromBranch" : "B",
+    "toBranch" : "C",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 12
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 12
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 12
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 12
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 12
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 12
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 12
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 12
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 12
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 12
+      },
+      "duration" : 1
+    } ]
+  }, {
+    "description" : "cb",
+    "fromBranch" : "C",
+    "toBranch" : "B",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 16
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 16
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 16
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 16
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 16
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 16
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 16
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 16
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 16
+      },
+      "duration" : 1
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 16
+      },
+      "duration" : 1
+    } ]
+  }, {
+    "description" : "cd",
+    "fromBranch" : "C",
+    "toBranch" : "D",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 11
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 11
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 11
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 11
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 11
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 11
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 11
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 11
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 11
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 11
+      },
+      "duration" : 3
+    } ]
+  }, {
+    "description" : "dc",
+    "fromBranch" : "D",
+    "toBranch" : "C",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 10
+      },
+      "duration" : 3
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 10
+      },
+      "duration" : 3
+    } ]
+  }, {
+    "description" : "bd",
+    "fromBranch" : "B",
+    "toBranch" : "D",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 10,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 12,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 14,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 16,
+        "hour" : 8
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 18,
+        "hour" : 8
+      },
+      "duration" : 2
+    } ]
+  }, {
+    "description" : "be",
+    "fromBranch" : "B",
+    "toBranch" : "E",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 8
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 8
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 8
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 8
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 8
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 8
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 8
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 8
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 8
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 8
+      },
+      "duration" : 5
+    } ]
+  }, {
+    "description" : "eb",
+    "fromBranch" : "E",
+    "toBranch" : "B",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 0,
+        "hour" : 11
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 11
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 11
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 11
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 11
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 11
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 6,
+        "hour" : 11
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 7,
+        "hour" : 11
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 11
+      },
+      "duration" : 5
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 11
+      },
+      "duration" : 5
+    } ]
+  }, {
+    "description" : "de",
+    "fromBranch" : "D",
+    "toBranch" : "E",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 16
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 16
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 16
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 16
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 16
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 16
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 16
+      },
+      "duration" : 2
+    } ]
+  }, {
+    "description" : "eh",
+    "fromBranch" : "E",
+    "toBranch" : "H",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 11
+      },
+      "duration" : 2
+    } ]
+  }, {
+    "description" : "he",
+    "fromBranch" : "H",
+    "toBranch" : "E",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 15
+      },
+      "duration" : 2
+    } ]
+  }, {
+    "description" : "hf",
+    "fromBranch" : "H",
+    "toBranch" : "F",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 12
+      },
+      "duration" : 2
+    } ]
+  }, {
+    "description" : "fh",
+    "fromBranch" : "F",
+    "toBranch" : "H",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 12
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 12
+      },
+      "duration" : 2
+    } ]
+  }, {
+    "description" : "fg",
+    "fromBranch" : "F",
+    "toBranch" : "G",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 11
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 11
+      },
+      "duration" : 2
+    } ]
+  }, {
+    "description" : "gf",
+    "fromBranch" : "G",
+    "toBranch" : "F",
+    "schedule" : [ {
+      "startAt" : {
+        "day" : 1,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 2,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 3,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 4,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 5,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 8,
+        "hour" : 15
+      },
+      "duration" : 2
+    }, {
+      "startAt" : {
+        "day" : 9,
+        "hour" : 15
+      },
+      "duration" : 2
+    } ]
+  } ]
+}

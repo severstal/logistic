@@ -68,7 +68,7 @@ public class ScheduleBuilder {
 
         for (int i = 0; i < 365; i++) {
 
-            if (i % 6 == 0 || i % 7 == 0) {
+            if (((i + 2) % 7 == 0 || (i + 1) % 7 == 0) && i > 0) {
                 continue;
             }
 

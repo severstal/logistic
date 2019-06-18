@@ -1,9 +1,9 @@
 package ru.iportnyagin.logistic;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jetbrains.annotations.NotNull;
 import ru.iportnyagin.logistic.dto.BranchDto;
 import ru.iportnyagin.logistic.dto.ConfigDto;
-import ru.iportnyagin.logistic.dto.RouteDto;
 import ru.iportnyagin.logistic.entity.Branch;
 import ru.iportnyagin.logistic.entity.Route;
 
@@ -27,6 +27,7 @@ public class JsonConfig implements Config {
     }
 
     @Override
+    @NotNull
     public List<Branch> getBranches() {
         if (Objects.isNull(branches)) {
             init();
@@ -35,6 +36,7 @@ public class JsonConfig implements Config {
     }
 
     @Override
+    @NotNull
     public List<Route> getRoutes() {
         if (Objects.isNull(routes)) {
             init();

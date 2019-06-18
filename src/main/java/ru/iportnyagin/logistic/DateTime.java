@@ -1,6 +1,7 @@
 package ru.iportnyagin.logistic;
 
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Calendar;
 
@@ -19,7 +20,7 @@ public class DateTime {
         hour = gHour % 24;
     }
 
-    public DateTime(DateTime dateTime, int addHour) {
+    public DateTime(@NotNull DateTime dateTime, int addHour) {
         this(dateTime.day, dateTime.hour + addHour);
     }
 
@@ -27,23 +28,25 @@ public class DateTime {
         return day * 24 + hour;
     }
 
-    public int hoursBetween(DateTime dateTime) {
+    public int hoursBetween(@NotNull DateTime dateTime) {
         return toGlobalHour() - dateTime.toGlobalHour();
     }
 
-    public boolean after(DateTime dateTime) {
+    public boolean after(@NotNull DateTime dateTime) {
         return toGlobalHour() >= dateTime.toGlobalHour();
     }
 
-    public boolean before(DateTime dateTime) {
+    public boolean before(@NotNull DateTime dateTime) {
         return toGlobalHour() < dateTime.toGlobalHour();
     }
 
+    @NotNull
     public static DateTime getCurrentDateTime() {
         Calendar calendar = Calendar.getInstance();
         return new DateTime(calendar.get(Calendar.DAY_OF_YEAR), calendar.get(Calendar.HOUR_OF_DAY));
     }
 
+    @NotNull
     public static DateTime getCurrentDate() {
         Calendar calendar = Calendar.getInstance();
         return new DateTime(calendar.get(Calendar.DAY_OF_YEAR), 0);

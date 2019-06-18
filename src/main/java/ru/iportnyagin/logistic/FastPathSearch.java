@@ -1,6 +1,7 @@
 package ru.iportnyagin.logistic;
 
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import ru.iportnyagin.logistic.entity.Branch;
 import ru.iportnyagin.logistic.entity.Cargo;
 import ru.iportnyagin.logistic.entity.Path;
@@ -22,7 +23,8 @@ public class FastPathSearch implements PathSearch {
     private final Config config;
 
     @Override
-    public Optional<Path> find(Cargo cargo, Branch currentLocation, DateTime startAt) {
+    @NotNull
+    public Optional<Path> find(@NotNull Cargo cargo, @NotNull Branch currentLocation, @NotNull DateTime startAt) {
 
         System.out.println(String.format("will search path from %s to %s begin at %s",
                                          currentLocation,
@@ -82,13 +84,13 @@ public class FastPathSearch implements PathSearch {
      * @param startAt       текущая дата
      * @param toDate        максимальная дата, в течении которой нужно добраться до целевеого пункта
      */
-    private void findAllPaths(List<Path> result,
-                              Path path,
-                              Branch currentBranch,
-                              Branch targetBranch,
-                              List<Branch> visited,
-                              DateTime startAt,
-                              DateTime toDate,
+    private void findAllPaths(@NotNull List<Path> result,
+                              @NotNull Path path,
+                              @NotNull Branch currentBranch,
+                              @NotNull Branch targetBranch,
+                              @NotNull List<Branch> visited,
+                              @NotNull DateTime startAt,
+                              @NotNull DateTime toDate,
                               boolean afterShip) {
 
         Optional<Processing> curProcessing = currentBranch.processInBranch(startAt, afterShip);
@@ -133,10 +135,11 @@ public class FastPathSearch implements PathSearch {
      * @param toDate     дата окончания поездки
      * @return
      */
-    private List<Shipping> findOutgoingShippingsFromToDate(Branch fromBranch,
-                                                           List<Branch> visited,
-                                                           DateTime fromDate,
-                                                           DateTime toDate) {
+    @NotNull
+    private List<Shipping> findOutgoingShippingsFromToDate(@NotNull Branch fromBranch,
+                                                           @NotNull List<Branch> visited,
+                                                           @NotNull DateTime fromDate,
+                                                           @NotNull DateTime toDate) {
 
         List<Route> routes = config.getRoutes().stream()
                                    .filter(r -> r.getFromBranch().equals(fromBranch)
@@ -173,11 +176,12 @@ public class FastPathSearch implements PathSearch {
      * @param afterShip     прибытие поездки - для учета максимального ожидания транспортом открытия отделения
      * @return
      */
-    private Optional<Path> findOnePath(Path path,
-                                       Branch currentBranch,
-                                       Branch targetBranch,
-                                       DateTime startAt,
-                                       List<Branch> visited,
+    @NotNull
+    private Optional<Path> findOnePath(@NotNull Path path,
+                                       @NotNull Branch currentBranch,
+                                       @NotNull Branch targetBranch,
+                                       @NotNull DateTime startAt,
+                                       @NotNull List<Branch> visited,
                                        boolean afterShip) {
 
         Optional<Processing> curProcessing = currentBranch.processInBranch(startAt, afterShip);
@@ -223,9 +227,10 @@ public class FastPathSearch implements PathSearch {
      * @param fromDate   "текущая" дата
      * @return
      */
-    private List<Shipping> findFirstOutgoingShippings(Branch fromBranch,
-                                                      List<Branch> visited,
-                                                      DateTime fromDate) {
+    @NotNull
+    private List<Shipping> findFirstOutgoingShippings(@NotNull Branch fromBranch,
+                                                      @NotNull List<Branch> visited,
+                                                      @NotNull DateTime fromDate) {
 
         List<Route> routes = config.getRoutes().stream()
                                    .filter(r -> r.getFromBranch().equals(fromBranch)
